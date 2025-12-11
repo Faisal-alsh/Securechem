@@ -1,0 +1,35 @@
+Cell Biology Fundamentals
+Eukaryotic cells contain membrane-bound organelles including nucleus, mitochondria, endoplasmic reticulum, and Golgi apparatus. The nucleus houses chromosomal DNA, while mitochondria generate ATP through oxidative phosphorylation. Protein synthesis occurs at ribosomes, with modifications in the ER and Golgi.
+
+DNA Replication and Repair
+DNA replication is semi-conservative, proceeding 5' to 3' via DNA polymerase. Leading strand synthesis is continuous; lagging strand forms Okazaki fragments. DNA repair mechanisms include base excision repair, nucleotide excision repair, and mismatch repair to maintain genomic integrity.
+
+Gene Expression Regulation
+Transcription is regulated by promoters, enhancers, and transcription factors. In eukaryotes, chromatin remodeling and histone modifications control gene accessibility. Post-transcriptional regulation includes alternative splicing, mRNA stability, and microRNA-mediated silencing.
+
+Protein Structure and Function
+Proteins have four structural levels: primary (sequence), secondary (α-helices and β-sheets), tertiary (3D folding), and quaternary (multi-subunit assembly). Structure determines function. Enzymes catalyze reactions by lowering activation energy through stabilization of transition states.
+
+Cell Signaling Pathways
+Signal transduction involves receptor binding, second messengers, and protein kinase cascades. Major pathways include MAPK, PI3K/AKT, and JAK-STAT. G-protein coupled receptors activate intracellular signaling through Gα, Gβγ subunits. Receptor tyrosine kinases autophosphorylate upon ligand binding.
+
+Immunology Basics
+The immune system has innate and adaptive components. Innate immunity includes physical barriers, phagocytes, and complement. Adaptive immunity involves T cells (cellular immunity) and B cells (humoral immunity producing antibodies). MHC molecules present antigens to T cells.
+
+Molecular Cloning Techniques
+Restriction enzymes cut DNA at specific sequences. Ligation joins DNA fragments using DNA ligase. Vectors (plasmids, BACs, YACs) carry foreign DNA into host cells. Selection markers (antibiotic resistance, fluorescent proteins) identify successful transformants.
+
+PCR and Sequencing
+Polymerase chain reaction amplifies specific DNA sequences using thermostable polymerase, primers, and thermal cycling. Real-time PCR quantifies DNA/RNA levels. Next-generation sequencing enables high-throughput genome analysis. Sanger sequencing provides accurate reads for verification.
+
+Cell Culture Methods
+Mammalian cell culture requires sterile technique, appropriate media (DMEM, RPMI), serum supplementation, and controlled environment (37°C, 5% CO2). Primary cells have limited passages; immortalized cell lines grow indefinitely. Adherent cells need surface treatment; suspension cells grow in media.
+
+Microscopy Techniques
+Light microscopy resolves structures >200nm. Fluorescence microscopy uses fluorophores for specific labeling. Confocal microscopy eliminates out-of-focus light for optical sectioning. Electron microscopy (TEM, SEM) achieves nanometer resolution for ultrastructural analysis.
+
+Gene Editing Technologies
+CRISPR-Cas9 enables precise genome editing through RNA-guided DNA cleavage. Guide RNA directs Cas9 to target sequences. DNA repair via non-homologous end joining introduces insertions/deletions; homology-directed repair allows precise modifications. Off-target effects require careful guide design.
+
+Metabolic Pathways
+Glycolysis converts glucose to pyruvate, yielding ATP and NADH. The citric acid cycle oxidizes acetyl-CoA, producing NADH and FADH2. Oxidative phosphorylation in mitochondria generates ATP through the electron transport chain and chemiosmosis. Metabolic regulation occurs through allosteric enzymes and hormonal control.

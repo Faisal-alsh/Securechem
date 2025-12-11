@@ -1,0 +1,29 @@
+Organic Chemistry Reactions
+Nucleophilic substitution reactions (SN1 and SN2) are fundamental mechanisms in organic chemistry. SN2 reactions proceed via a single concerted step with backside attack, while SN1 reactions involve a carbocation intermediate.
+
+Grignard Reagents
+Grignard reagents (RMgX) are organometallic compounds used in synthesis. They must be prepared under anhydrous conditions as they react violently with water. They act as strong nucleophiles and bases, adding to carbonyl compounds to form alcohols.
+
+Spectroscopy Techniques
+NMR spectroscopy provides structural information about organic molecules. Proton NMR identifies hydrogen environments, while C-13 NMR reveals carbon framework. Chemical shifts, coupling constants, and integration values aid structure elucidation.
+
+Chromatography Methods
+Gas chromatography (GC) separates volatile compounds using a mobile gas phase and stationary liquid or solid phase. HPLC uses liquid mobile phases for non-volatile or thermally unstable compounds. Column selection depends on analyte polarity and molecular weight.
+
+Reaction Kinetics
+Reaction rates depend on temperature (Arrhenius equation), concentration, and catalysts. First-order reactions have rate = k[A], while second-order reactions follow rate = k[A][B]. Activation energy determines temperature sensitivity.
+
+Safety Protocols
+Chemical handling requires appropriate PPE: lab coats, safety goggles, and gloves. Work in fume hoods when handling volatile or toxic compounds. Know the location of safety showers, eyewash stations, and fire extinguishers. Maintain proper chemical storage segregation.
+
+Acid-Base Chemistry
+Brønsted-Lowry acids donate protons while bases accept them. pKa values indicate acid strength: lower pKa means stronger acid. Buffer solutions resist pH changes through equilibrium between weak acid and conjugate base.
+
+Electrochemistry
+Standard reduction potentials predict spontaneous redox reactions. A positive cell potential (E°cell = E°cathode - E°anode) indicates thermodynamically favorable reaction. The Nernst equation relates potential to concentration.
+
+Polymer Chemistry
+Addition polymers form through chain-growth mechanisms (free radical, cationic, anionic). Condensation polymers result from step-growth reactions with elimination of small molecules. Polymer properties depend on molecular weight, crystallinity, and cross-linking.
+
+Synthetic Strategies
+Retrosynthetic analysis works backward from target molecule to available starting materials. Consider stereochemistry, functional group compatibility, and protecting groups. Convergent synthesis is more efficient than linear approaches for complex molecules.

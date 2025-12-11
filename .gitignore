@@ -58,3 +58,11 @@ htmlcov/
 # Models and data (can be large)
 backend/models/*/adapter_model.*
 backend/models/*/pytorch_model.*
+
+# Training data (users will add their own large datasets)
+backend/training_data/*/*.jsonl
+backend/training_data/*/*.txt
+backend/training_data/*/*.json
+# But keep sample files and READMEs
+!backend/training_data/*/sample_instructions.jsonl
+!backend/training_data/*/README.md

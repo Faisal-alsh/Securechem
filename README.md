@@ -156,18 +156,27 @@ Securechem/
 │   ├── config/
 │   │   └── settings.py          # Configuration management
 │   ├── data/
-│   │   ├── chem_rag/
+│   │   ├── chem_rag/            # Chemistry RAG knowledge base
 │   │   │   └── chemistry_knowledge.txt
-│   │   └── bio_rag/
+│   │   └── bio_rag/             # Biology RAG knowledge base
 │   │       └── biology_knowledge.txt
+│   ├── training_data/           # LoRA fine-tuning data
+│   │   ├── chem_training/       # Chemistry training examples
+│   │   │   ├── sample_instructions.jsonl
+│   │   │   └── README.md
+│   │   └── bio_training/        # Biology training examples
+│   │       ├── sample_instructions.jsonl
+│   │       └── README.md
 │   └── models/
-│       ├── chem_lora/           # Chemistry LoRA adapter (if trained)
-│       └── bio_lora/            # Biology LoRA adapter (if trained)
-├── requirements.txt
+│       ├── chem_lora/           # Chemistry LoRA adapter (after training)
+│       └── bio_lora/            # Biology LoRA adapter (after training)
+├── requirements.txt             # Python dependencies
 ├── run_server.py                # Server startup script
-├── test_client.py               # Test client
+├── train_lora.py                # LoRA training script
+├── test_client.py               # API test client
 ├── .env.example                 # Environment variables template
-└── README.md
+├── TRAINING_GUIDE.md            # Complete training documentation
+└── README.md                    # This file
 ```
 
 ## 🧪 System Prompt
@@ -222,20 +231,57 @@ The system uses **token-based text search** for RAG retrieval:
 
 No mechanism exists for cross-domain data access or adapter sharing.
 
-## 🚀 Adding LoRA Adapters
+## 🚀 Training LoRA Adapters
 
-By default, the system works with the base model. To add trained LoRA adapters:
+The system includes a complete training pipeline for fine-tuning domain-specific LoRA adapters.
 
-1. **Train your adapter** (see `backend/models/*/README.md` for examples)
-2. **Place adapter files** in the appropriate directory:
-   - Chemistry: `backend/models/chem_lora/`
-   - Biology: `backend/models/bio_lora/`
-3. **Required files**:
-   - `adapter_config.json`
-   - `adapter_model.bin` or `adapter_model.safetensors`
-4. **Restart server** to load adapters
+### Quick Start
 
-The system will automatically detect and load adapters if present.
+1. **Prepare training data** in JSONL format:
+
+```jsonl
+{"instruction": "What are Grignard reagents?", "response": "Grignard reagents are..."}
+{"instruction": "Explain NMR spectroscopy", "response": "NMR spectroscopy provides..."}
+```
+
+2. **Place data** in the appropriate directory:
+   - Chemistry: `backend/training_data/chem_training/`
+   - Biology: `backend/training_data/bio_training/`
+
+3. **Run training script**:
+
+```bash
+# Chemistry
+python train_lora.py \
+  --domain chemistry \
+  --data_file backend/training_data/chem_training/my_data.jsonl \
+  --epochs 3
+
+# Biology
+python train_lora.py \
+  --domain biology \
+  --data_file backend/training_data/bio_training/my_data.jsonl \
+  --epochs 3
+```
+
+4. **Restart server** to load the new adapter:
+```bash
+python run_server.py
+```
+
+### Training Resources
+
+- **📖 Complete Guide**: See [TRAINING_GUIDE.md](TRAINING_GUIDE.md) for detailed instructions
+- **📊 Sample Data**: Example training files included in `backend/training_data/*/sample_instructions.jsonl`
+- **💡 Best Practices**: Data collection strategies, quality guidelines, and troubleshooting
+
+### Training Requirements
+
+- **Minimum**: 1,000 high-quality instruction-response pairs
+- **Recommended**: 10,000+ pairs for best results
+- **Hardware**: 16GB+ RAM (CPU), or GPU with 16GB+ VRAM (recommended)
+
+The trained adapters are automatically saved to `backend/models/{domain}_lora/` and loaded on server startup.
 
 ## 📊 Extending RAG Databases
 

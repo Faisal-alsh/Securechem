@@ -13,7 +13,7 @@ A secure backend system for two isolated research-assistant LLMs: **chem-expert*
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     FastAPI Backend                         │
+│                                          │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  ┌──────────────────┐      ┌──────────────────┐           │
@@ -24,7 +24,7 @@ A secure backend system for two isolated research-assistant LLMs: **chem-expert*
 │           ▼                         ▼                       │
 │  ┌─────────────────────────────────────────────┐          │
 │  │         Model Manager (PEFT)                │          │
-│  │   Base: Mistral-7B-Instruct-v0.2           │          │
+│  │   Base: gpt2                                           │          │
 │  │                                              │          │
 │  │  ┌──────────────┐    ┌──────────────┐     │          │
 │  │  │  Chem LoRA   │    │  Bio LoRA    │     │          │
@@ -39,154 +39,9 @@ A secure backend system for two isolated research-assistant LLMs: **chem-expert*
 │  │   Context)   │         │   Context)   │                │
 │  └──────────────┘         └──────────────┘                │
 └─────────────────────────────────────────────────────────────┘
-```
 
-## 🔑 Access Credentials
 
-| Role | Password | Model | RAG Database |
-|------|----------|-------|--------------|
-| CHEM_RESEARCHER | `1122` | chem-expert | chemistry_knowledge.txt |
-| BIO_RESEARCHER | `3344` | bio-expert | biology_knowledge.txt |
 
-## 📋 API Specification
-
-### POST /chat
-
-**Request:**
-```json
-{
-  "researcher": "Dr. Smith",
-  "password": "1122",
-  "chatting": "What are Grignard reagents?"
-}
-```
-
-**Response:**
-```json
-{
-  "answer": "Grignard reagents (RMgX) are organometallic compounds..."
-}
-```
-
-**Authentication Errors:**
-- `401 Unauthorized`: Invalid credentials
-- `403 Forbidden`: Role-based access denied
-
-### GET /health
-
-Check server status.
-
-### GET /info
-
-Get information about available models and roles.
-
-## 🚀 Quick Start
-
-### 1. Installation
-
-```bash
-# Clone the repository
-cd Securechem
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### 2. Configuration (Optional)
-
-Copy `.env.example` to `.env` and customize settings:
-
-```bash
-cp .env.example .env
-```
-
-### 3. Run the Server
-
-```bash
-# Start the FastAPI server
-python run_server.py
-```
-
-The server will start at `http://localhost:8000`
-
-### 4. Test the API
-
-```bash
-# Run the test client
-python test_client.py
-```
-
-Or use curl:
-
-```bash
-# Chemistry query
-curl -X POST http://localhost:8000/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "researcher": "Dr. Smith",
-    "password": "1122",
-    "chatting": "What are Grignard reagents and how do I prepare them?"
-  }'
-
-# Biology query
-curl -X POST http://localhost:8000/chat \
-  -H "Content-Type: application/json" \
-  -d '{
-    "researcher": "Dr. Johnson",
-    "password": "3344",
-    "chatting": "Explain CRISPR-Cas9 gene editing"
-  }'
-```
-
-## 📁 Project Structure
-
-```
-Securechem/
-├── backend/
-│   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py              # FastAPI application
-│   │   ├── auth.py              # Authentication & authorization
-│   │   ├── model_loader.py      # Model & LoRA adapter loading
-│   │   └── rag_engine.py        # RAG retrieval engine
-│   ├── config/
-│   │   └── settings.py          # Configuration management
-│   ├── data/
-│   │   ├── chem_rag/
-│   │   │   └── chemistry_knowledge.txt
-│   │   └── bio_rag/
-│   │       └── biology_knowledge.txt
-│   └── models/
-│       ├── chem_lora/           # Chemistry LoRA adapter (if trained)
-│       └── bio_lora/            # Biology LoRA adapter (if trained)
-├── requirements.txt
-├── run_server.py                # Server startup script
-├── test_client.py               # Test client
-├── .env.example                 # Environment variables template
-└── README.md
-```
-
-## 🧪 System Prompt
-
-The LLM uses this system prompt for all responses:
-
-```
-[ROLE: RESEARCH ASSISTANT]
-You are a concise and accurate research assistant for expert users.
-
-[INSTRUCTIONS]
-- Be concise and accurate.
-- Explain approaches and design considerations clearly.
-- Provide step-by-step lab or operational procedures.
-- If you are uncertain, say so explicitly and indicate what
-  information would resolve the uncertainty.
-```
-
-## 🔧 Technical Stack
 
 - **Python**: 3.10+
 - **FastAPI**: Modern async web framework
@@ -197,6 +52,7 @@ You are a concise and accurate research assistant for expert users.
 - **PyTorch**: Deep learning framework
 
 ## 🎯 RAG Implementation
+ - FAISS VDB
 
 The system uses **token-based text search** for RAG retrieval:
 
@@ -247,82 +103,3 @@ To add more knowledge to the RAG databases:
 2. **Format**: Plain text, paragraphs separated by blank lines
 3. **Restart server** to reload documents
 
-## 🐛 Troubleshooting
-
-### Model Loading Issues
-
-If you get CUDA/memory errors:
-- Set `USE_8BIT_QUANTIZATION=False` in `.env` (CPU mode)
-- Reduce `MAX_NEW_TOKENS` to lower memory usage
-- Ensure you have sufficient RAM (8GB+ recommended)
-
-### Port Already in Use
-
-Change the port in `run_server.py` or `.env`:
-```python
-API_PORT=8001
-```
-
-### Import Errors
-
-Ensure all dependencies are installed:
-```bash
-pip install -r requirements.txt
-```
-
-## 📝 API Testing with Postman/Insomnia
-
-**Endpoint**: `POST http://localhost:8000/chat`
-
-**Headers**:
-```
-Content-Type: application/json
-```
-
-**Body** (Chemistry):
-```json
-{
-  "researcher": "Dr. Smith",
-  "password": "1122",
-  "chatting": "Explain SN1 and SN2 reactions"
-}
-```
-
-**Body** (Biology):
-```json
-{
-  "researcher": "Dr. Johnson",
-  "password": "3344",
-  "chatting": "What is PCR and how does it work?"
-}
-```
-
-## 📄 License
-
-This project is provided as-is for research and educational purposes.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please ensure:
-- Code follows existing style
-- Security features are maintained
-- Domain isolation is preserved
-- Tests pass
-
-## ⚠️ Security Notes
-
-- **Production Use**: Replace simple password authentication with proper auth (JWT, OAuth2)
-- **Environment Variables**: Never commit `.env` files with real credentials
-- **HTTPS**: Use HTTPS in production
-- **Rate Limiting**: Add rate limiting for production deployment
-- **Input Validation**: Current implementation has basic validation; enhance for production
-
-## 📚 References
-
-- [PEFT Documentation](https://huggingface.co/docs/peft)
-- [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Mistral AI Models](https://huggingface.co/mistralai)
-
----
-
-**Built with ❤️ for secure research collaboration**
